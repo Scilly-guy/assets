@@ -1,0 +1,47 @@
+
+.resizewave{
+  --wave-height:50px;
+  --wave-count:20;
+  --wave-width:calc(100vw / var(--wave-count));
+  position:relative;
+  padding-block:var(--wave-height);
+}
+.resizewave::before,.resizewave::after{
+  content:'';
+  position:absolute;
+  width:100%;
+  height:var(--wave-height);
+  background-color:white;
+  -webkit-mask-image:url(https://raw.githubusercontent.com/Scilly-guy/assets/f0aea3d1d72144e74305fb159da906eecb6aa2ea/wave.svg);
+  -webkit-mask-size:var(--wave-width) var(--wave-height);
+  mask-image:url(https://raw.githubusercontent.com/Scilly-guy/assets/f0aea3d1d72144e74305fb159da906eecb6aa2ea/wave.svg);
+  mask-size:var(--wave-width) var(--wave-height);
+}
+.resizewave::before{
+  top:0;
+}
+.resizewave::after{
+  bottom:0;
+  rotate:.5turn;
+  /*In order to line up the bottom waves with the top this translation seems to work well*/
+  /*For even wave counts peaks align with peaks, for odd, peaks align with troughs*/
+  width:200%;
+  translate:calc(-45vw);
+}
+section{
+  min-height:33vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+section:nth-child(even){
+  background-color:black;
+}
+svg{
+  display:none;
+}
+
+p{
+  width:fit-content;
+  margin:0 auto;
+}
